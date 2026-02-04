@@ -206,7 +206,7 @@
 // int main(){
 // 	// std::string name;
 // 	// std::cout<<"What is your name"<<'\n';
-// 	// // std::cin>>name; // -- it will take upto once curson hits white space
+// 	// // std::cin>>name; // -- it will take upto once cursor hits white space
 // 	// std::getline(std::cin,name); //  --it takes include white space
 // 	// std::cout<<"Hello "<<name<<std::endl;
 
@@ -217,7 +217,7 @@
 // 	std::cin>>age;
 // //if you taking input int followed with getline it will take new line charecter, getlinne will take buffered new line charecter which is in cin int inuput
 // 	std::cout<<"What is your full name:";
-// 	std::getline(std::cin >>std::ws,fullName); //srd::ws-->it will eliminate any ws or new line charecter before taking input to getline()
+// 	std::getline(std::cin >>std::ws,fullName); //std::ws-->it will eliminate any ws or new line charecter before taking input to getline()
 
 // 	std::cout<<"hello "<<fullName<<'\n'<<"you are "<<age <<"years old";
 // 	return 0;
@@ -534,11 +534,7 @@
 
 // }
 
-
-/*********-------------------random event geenarator--------- */
-
-
-
+/*********-------------------random event genearator--------- */
 // #include<ctime>
 // int main(){
 // 	srand(time(0));
@@ -672,12 +668,12 @@
 //local veriable= declared inside a function or block of code;
 //global veriable = declared outside of all the functions
 
-//avoid global veriable as much as possible because because it takes global space and less secured veriable compare to local veriable
+//avoid global veriable as much as possible because it takes global space and less secured veriable compare to local veriable
 // int myNum=5;
 // void fun();
 // int main(){
 // 	int myNum=10;
-// 	std::cout<<::myNum<<'\n';
+// 	std::cout<<::myNum<<'\n';                ////imp line
 // 	fun();
 // 	return 0;
 // }
@@ -1165,9 +1161,7 @@
 
 // }
 
-
-
-/*****************Function Template */
+/*****************Function Template ******************/
 
 
 //function template=describes what a function looks like.
@@ -1486,48 +1480,64 @@
 
 
 /******************Smart pointers ******************/
-#include<memory>
-class Student{
-	public:
-	std::string name;
-	int age;
-	int std;
-};
-int main(){
-	std::unique_ptr<Student> s1= std::make_unique<Student>();
-	std::unique_ptr<Student> s2=std::make_unique<Student>();
-	auto s3=std::make_unique<Student>();
-	auto s4=std::make_unique<Student>();
+// #include<memory>
+// class Student{
+// 	public:
+// 	std::string name;
+// 	int age;
+// 	int std;
+// };
+// int main(){
+// 	std::unique_ptr<Student> s1= std::make_unique<Student>();
+// 	std::unique_ptr<Student> s2=std::make_unique<Student>();
+// 	auto s3=std::make_unique<Student>();
+// 	auto s4=std::make_unique<Student>();
 
-	s1->name="Praveen";
-	s1->age=15;
-	s1->std=10;
+// 	s1->name="Praveen";
+// 	s1->age=15;
+// 	s1->std=10;
 
-	s2->name="Krishna";
-	s2->age=15;
-	s2->std=10;
+// 	s2->name="Krishna";
+// 	s2->age=15;
+// 	s2->std=10;
 	
-	s3->name="Priya";
-	s3->age=15;
-	s3->std=10;
+// 	s3->name="Priya";
+// 	s3->age=15;
+// 	s3->std=10;
 
-	s4->name="Raw pointer";
-	s4->age=15;
-	s4->std=10;
+// 	s4->name="Raw pointer";
+// 	s4->age=15;
+// 	s4->std=10;
 
-	std::cout<<s1->name<<std::endl;
-	std::cout<<(*s1).age<<std::endl;
-	std::cout<<s1->std<<std::endl;
+// 	std::cout<<s1->name<<std::endl;
+// 	std::cout<<(*s1).age<<std::endl;
+// 	std::cout<<s1->std<<std::endl;
 
-	std::cout<<s2->name<<std::endl;
-	std::cout<<(*s2).age<<std::endl;
-	std::cout<<s2->std<<std::endl;
+// 	std::cout<<s2->name<<std::endl;
+// 	std::cout<<(*s2).age<<std::endl;
+// 	std::cout<<s2->std<<std::endl;
 
-	std::cout<<s3->name<<std::endl;
-	std::cout<<(*s3).age<<std::endl;
-	std::cout<<s3->std<<std::endl;
+// 	std::cout<<s3->name<<std::endl;
+// 	std::cout<<(*s3).age<<std::endl;
+// 	std::cout<<s3->std<<std::endl;
 
-	Student* raw=s4.get();
-	std::cout<<raw->name<<std::endl;
+// 	Student* raw=s4.get();
+// 	std::cout<<raw->name<<std::endl;
 
-}
+// }
+
+
+// #include <memory>
+
+// class Base {
+// public:
+//     virtual void show() { std::cout << "Base\n"; }
+//     virtual ~Base() {}
+// };
+
+// class Derived : public Base {
+// public:
+//     void show() override { std::cout << "Derived\n"; }
+//     void onlyInDerived() { std::cout << "Only in Derived\n"; }
+// };
+

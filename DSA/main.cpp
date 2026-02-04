@@ -143,7 +143,6 @@ using namespace std;
 //             return 0;
 //         }
 //         x*=2;
-        
 //     }
 //     cout<<"Given Number is not power of 2"<<endl;
 //     return 0;

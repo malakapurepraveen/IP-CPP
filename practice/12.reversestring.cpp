@@ -44,7 +44,6 @@ int findSecondLargest(int arr[], int n)
     }
     return secondLargest;
 }
-
 int main()
 {
     int arr[] = {10, 5, 20, 20, 8};

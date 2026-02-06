@@ -36,7 +36,4 @@ int main(){
     T1.rollNum=256;
     T1.subject="Maths";
     T1.getInfo();
-
-
-
 }

@@ -2,7 +2,6 @@
 #include<algorithm>
 #include<string>
 using namespace std;
-
     string reverseWords(string s){
         int n = s.length();
         string ans="";

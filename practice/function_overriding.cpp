@@ -18,16 +18,16 @@ class Derived:public Base{
 int main(){
     // Base* b;
     // Derived d;
-    // b = &d;
+    // b = &d;      
     // b->show(10);
 
     // Derived d;
-    // Base& b=d;
+    // Base& b=d;    //reference
     // b.show(5);
 
-    Derived d;
-    Base* b = &d;
-    b->show(5);  // Derived::show
+    // Derived d;     //pointer
+    // Base* b = &d;
+    // b->show(5);  // Derived::show
     
 
     return 0;

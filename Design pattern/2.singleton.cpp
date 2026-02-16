@@ -158,58 +158,129 @@
 
 
 
+// #include<iostream>
+// #include<string>
+// #include<thread>
+// #include<mutex>
+// using namespace std;
+// class Singleton{
+//     private:
+//     static Singleton* instance;
+//     static std::mutex mtx; 
+//     static int counter;
+//     Singleton(){
+//         counter++;
+//             cout<<"Singleton instance is created. No of instance: "<<counter<<endl;
+//         }
+//         public:
+//         static Singleton* getInstance(){
+//             if(instance==nullptr){
+//                 mtx.lock();
+//                 // std::lock_guard<std::mutex> lock(mtx);
+//                 if(instance==nullptr){
+//                     instance=new Singleton();
+//                 }
+//                 mtx.unlock();
+//                 return instance;
+//             }
+//         }
+//         Singleton(const Singleton &)=delete;
+//         Singleton& operator=(const Singleton &)=delete;
+//     void log(string msg){
+//         cout<<msg<<endl;
+//     }
+    
+// };
+// int Singleton::counter=0;
+// Singleton* Singleton::instance=nullptr;
+
+// void user1(){
+//     Singleton* s1=Singleton::getInstance();
+//     s1->log("Message from user 1");
+// }
+// void user2(){
+//     Singleton* s2=Singleton::getInstance();
+//     s2->log("Message from user 2 ");
+// }
+
+// int main(){
+//     std::thread t1(user1);
+//     std::thread t2(user2);
+//     t1.join();
+//     t2.join();
+//     return 0;
+// }
+
+
+
+// 
+// #include<iostream>
+// using namespace std;
+// class Singleton{
+// private:
+//         Singleton(){
+//             cout<<"Construction is called"<<endl;
+//         }
+    
+// public:
+//         static Singleton& getInstance(){
+//             static Singleton instance;     //threadsafe in c++11
+//             return instance;
+//         }
+
+//         void log(const string& msg){
+//             cout<<msg<<endl;
+//         }
+
+//         Singleton(const Singleton&)=delete;   //delete copy constructor
+//         Singleton& operator=(const Singleton&)=delete; //delete copy assignment operator
+//                             //Compiler error if someone tries to copy
+
+// };
+// int main(){
+//         Singleton& s1 = Singleton::getInstance();
+//         s1.log("Message from user 1");
+
+//         Singleton& s2=Singleton::getInstance();
+//         s2.log("Mesage from user 2");
+
+//         cout<<&s1<<endl;
+//         cout<<&s2<<endl;
+
+//         return 0;
+// }
+
 #include<iostream>
 #include<string>
-#include<thread>
-#include<mutex>
 using namespace std;
 class Singleton{
     private:
-    static Singleton* instance;
-    static std::mutex mtx; 
-    static int counter;
-    Singleton(){
-        counter++;
-            cout<<"Singleton instance is created. No of instance: "<<counter<<endl;
+        Singleton(){
+            cout<<"Singleton instance is created"<<endl;
         }
-        public:
-        static Singleton* getInstance(){
-            if(instance==nullptr){
-                mtx.lock();
-                // std::lock_guard<std::mutex> lock(mtx);
-                if(instance==nullptr){
-                    instance=new Singleton();
-                }
-                mtx.unlock();
-                return instance;
-            }
-            Singleton(const Singleton &)=delete;
-            Singleton operator=(const Singleton &)=delete;
-
-
-    }
-    void log(string msg){
-        cout<<msg<<endl;
-    }
     
+    public:
+        static Singleton& getInstance(){
+            static Singleton instance;
+            return instance;
+        }
+        void log(const string& msg){
+            cout<<msg<<endl;
+        }
+    Singleton (const Singleton&)=delete;
+    Singleton& operator=(const Singleton&)=delete;
 };
-int Singleton::counter=0;
-Singleton* Singleton::instance=nullptr;
-
-void user1(){
-    Singleton* s1=Singleton::getInstance();
-    s1->log("Message from user 1");
-}
-void user2(){
-    Singleton* s2=Singleton::getInstance();
-    s2->log("Message from user 2 ");
-}
 
 int main(){
-    std::thread t1(user1);
-    std::thread t2(user2);
-    t1.join();
-    t2.join();
+    Singleton& s1=Singleton::getInstance();
+    Singleton& s2=Singleton::getInstance();
+
+    s1.log("Message from object1"); 
+    s2.log("Message from object2"); 
+
+    cout<<&s1<<endl;
+    cout<<&s2<<endl;
+
     return 0;
 }
 

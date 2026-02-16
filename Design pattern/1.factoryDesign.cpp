@@ -18,7 +18,6 @@
 //     void draw(){
 //     cout<<"Drawing rectangle"<<endl;
 //     }
-
 // };
 
 // int main(){
@@ -41,7 +40,7 @@
 // }
 
 
-/***************************with factory design pattern*****************/
+// /***************************with factory design pattern*****************/
 // #include<iostream>
 // #include<string>
 // using namespace  std;
@@ -84,8 +83,6 @@
 //     string type;
 //     cin>>type;
 //     Shape *shape=ShapeFactory::createShape(type);
-  
-
 
 //     if(shape)
 //         shape->draw();
@@ -93,50 +90,101 @@
 // }
 
 
-/******************Vechile example*********************/
+// /******************Vechile example*********************/
+
+// #include<iostream>
+// #include<string>
+// using namespace std;
+
+// class Vechile{
+//     public:
+//     virtual void drive()=0;
+//     virtual ~Vechile(){}
+// };
+// class Car:public Vechile{
+//     public:
+//         void drive(){
+//             cout<<"creating car"<<endl;
+//         }
+// };
+// class Bike:public Vechile{
+//     public:
+//         void drive(){
+//             cout<<"Creating bike"<<endl;
+//         }
+// };
+// class VechileFactory{
+//     public:
+//     static Vechile* creteVechile(string vechileType){
+//         if(vechileType=="bike")
+//             return new Bike();
+//         else if(vechileType=="car")
+//             return new Car();
+//         return nullptr;
+//     }
+
+// };
+
+// int main(){
+
+//     string vechileType;
+//     cin>>vechileType;
+//     Vechile *vechile=VechileFactory::creteVechile(vechileType);
+//     if(vechile)
+//         vechile->drive();
+    
+//     delete vechile;
+//     return 0;
+// }
+
 
 #include<iostream>
 #include<string>
+#include<memory>
 using namespace std;
 
 class Vechile{
     public:
-    virtual void drive()=0;
-    virtual ~Vechile(){}
+        virtual void drive()=0;
+        virtual ~Vechile(){}
+
 };
 class Car:public Vechile{
-    public:
-        void drive(){
-            cout<<"creating car"<<endl;
+    public: 
+        void drive() override{
+            cout<<"Creating Car"<<endl;
         }
 };
 class Bike:public Vechile{
     public:
-        void drive(){
-            cout<<"Creating bike"<<endl;
+        void drive() override{
+            cout<<"Creaing Car"<<endl;
         }
 };
+
 class VechileFactory{
     public:
+        // static vechile* createVechile(const string& s){
+        static unique_ptr<Vechile> createVechile(const string& s){
+            if(s=="bike")
+                return make_unique<Car>();
+            else if(s=="car"){
+                // return new Car();
+                  return make_unique<Car>();
 
-    static Vechile* creteVechile(string vechileType){
-        if(vechileType=="bike")
-            return new Bike();
-        else if(vechileType=="car")
-            return new Car();
-        return nullptr;
-    }
-
+            return nullptr;
+            }
+        }
 };
-
 int main(){
-
-    string vechileType;
-    cin>>vechileType;
-    Vechile *vechile=VechileFactory::creteVechile(vechileType);
-    if(vechile)
+    string s;
+    cout<<"Enter the vechile to create: ";
+    cin>>s;
+    // Vechile* vechile=VechileFactory::createVechile(s);
+    unique_ptr<Vechile> vechile=VechileFactory::createVechile(s);
+    if(vechile){
         vechile->drive();
-    
+    }
     delete vechile;
     return 0;
 }

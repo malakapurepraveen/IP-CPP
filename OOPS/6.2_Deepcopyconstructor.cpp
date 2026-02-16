@@ -1,5 +1,4 @@
 
-
 #include<iostream>
 using namespace std;
 class Deep{
@@ -61,42 +60,37 @@ int main(){
 
 
 
+#include<iostream>
+using namespace std;
+class DeepCopy{
+    public: 
+        int* data;
+    public:
+        DeepCopy(int value){
+            data =new int(value);
+            cout<<"Constructor is called: Memory allocated, value="<<value<<endl;
+        }
+        DeepCopy(const DeepCopy& other){
+            data=new int(*other.data);
+            cout<<"Deep Copy constructor is called"<<endl;
+        }
+        ~DeepCopy(){
+            cout<<"Destructor called: memory deallocated"<<endl;
+            delete data;
+        }
 
 
-
-
-
-// #include<iostream>
-// using namespace std;
-// class DeepCopy{
-//     public: 
-//         int* data;
-//     public:
-//         DeepCopy(int value){
-//             data =new int(value);
-//             cout<<"Constructor is called: Memory allocated, value="<<value<<endl;
-//         }
-//         DeepCopy(const DeepCopy& other){
-//             data=new int(*other.data);
-//             cout<<"Deep Copy constructor is called"<<endl;
-//         }
-//         ~DeepCopy(){
-//             cout<<"Destructor called: memory deallocated"<<endl;
-//             delete data;
-//         }
-
-
-// };
-// int main(){
-//     DeepCopy obj1(10);
-//     cout<<*obj1.data<<endl;
+};
+int main(){
+    DeepCopy obj1(10);
+    cout<<*obj1.data<<endl;
 
     
-//     DeepCopy obj2=obj1;
-//     // DeepCopy obj2(obj1);
-//     // *obj2.data=30;
-//     cout<<*obj1.data<<endl;
-//     cout<<*obj2.data<<endl;
+    DeepCopy obj2=obj1;
+    // DeepCopy obj2(obj1);
+    // *obj2.data=30;
+    cout<<*obj1.data<<endl;
+    cout<<*obj2.data<<endl;
     
-//     return 0;
-// }
+    return 0;
+}

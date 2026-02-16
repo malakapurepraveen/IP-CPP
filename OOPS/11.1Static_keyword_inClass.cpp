@@ -2,7 +2,7 @@
 using namespace std;
 class ABC{
     public:
-    static int x;       //as static variable in calss is inialized only oncee in progra. and that variable is shared among all the object created from ABC class
+    static int x;       //as static variable in calss is inialized only oncee in program. and that variable is shared among all the object created from ABC class
 };
 int ABC::x = 100; 
 int main(){

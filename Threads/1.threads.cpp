@@ -7,6 +7,6 @@ void task() {
 
 int main() {
     std::thread t(task);
-    // t.join();
+    t.join();
     return 0;
 }
